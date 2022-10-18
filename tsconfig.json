@@ -7,6 +7,17 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
+    "paths": {
+      "@framework/ui": [
+        "projects/framework/src/lib/ui/public-api.ts"
+      ],
+      "domain": [
+        "dist/domain"
+      ],
+      "framework": [
+        "dist/framework"
+      ]
+    },
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
