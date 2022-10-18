@@ -102,6 +102,68 @@
           }
         }
       }
+    },
+    "framework": {
+      "projectType": "library",
+      "root": "projects/framework",
+      "sourceRoot": "projects/framework/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/framework/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/framework/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/framework/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/framework/src/test.ts",
+            "tsConfig": "projects/framework/tsconfig.spec.json",
+            "karmaConfig": "projects/framework/karma.conf.js"
+          }
+        }
+      }
+    },
+    "domain": {
+      "projectType": "library",
+      "root": "projects/domain",
+      "sourceRoot": "projects/domain/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/domain/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/domain/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/domain/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/domain/src/test.ts",
+            "tsConfig": "projects/domain/tsconfig.spec.json",
+            "karmaConfig": "projects/domain/karma.conf.js"
+          }
+        }
+      }
     }
   }
 }

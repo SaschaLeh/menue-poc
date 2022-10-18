@@ -1,0 +1,27 @@
+@use 'states';
+
+:host {
+    @include states.interactive;
+    align-items: center;
+    box-shadow: 0 1px 1px var(--color-border);
+    color: var(--color-contrast-interactive, var(--color-content-emphasis-1));
+    cursor: pointer;
+    display: grid;
+
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(0.625rem, min-content));
+    min-height: 3rem;
+    min-width: 10rem;
+    overflow: hidden;
+    padding: 0 1rem;
+    position: relative;
+    user-select: none;
+    white-space: nowrap;
+
+    //Wird zusätzlich verwendet um in High Contrast die Schrift einzufärben
+    @media (hover) {
+        &:hover {
+            color: var(--color-contrast-highlight, var(--color-content-emphasis-1));
+        }
+    }
+}

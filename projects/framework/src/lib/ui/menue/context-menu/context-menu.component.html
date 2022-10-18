@@ -1,0 +1,23 @@
+<button
+        (click)="onItemClick($event, item)"
+        (mouseover)="$event.preventDefault()"
+        *ngFor="let item of singleMenuItems$ | async; trackBy: trackById"
+        [disabled]="item.disabled"
+>{{item.label}}</button>
+<app-menu-button (innoClickedOutside)="isOpen = false" *ngIf="contextIsAvailable" [(isOpen)]="isOpen"
+                 [listenOutsideClick]="isOpen">
+    <inno-icon-button (click)="toggle($event, !isOpen)" type="tertiary">
+        <ng-container *ngIf="triggerTemplate; else default">
+            <ng-container *ngTemplateOutlet="triggerTemplate"></ng-container>
+        </ng-container>
+        <ng-template #default>
+            ...
+        </ng-template>
+    </inno-icon-button>
+    <inno-menu-button-menu>
+        <inno-menu-item (click)="onItemClick($event, item)"
+                        *ngFor="let item of dropdownMenuItems$ | async; trackBy: trackById">
+            {{ item.label | innotranslate | async }}
+        </inno-menu-item>
+    </inno-menu-button-menu>
+</app-menu-button>
