@@ -15,24 +15,9 @@ export const SUBJECT_MENU_CONFIGURATION: Map<string, MenuConfiguration> = new Ma
                 header: "Test 2",
                 type: MenuActionType.Default,
                 enabled: true,
-                subItems: [
-                    {
-                        id: "sub1",
-                        header: "Sub 1",
-                        type: MenuActionType.Default,
-                        enabled: true,
-                        actionType: "fuba"
-                    },
-                    {
-                        id: "sub2",
-                        header: "Sub 2",
-                        type: MenuActionType.Default,
-                        enabled: true,
-                        actionType: "fuba1"
-                    },
-
-                ]
+                actionType: "action2"
             },
+
         ],
         showDefaultActions: false
     }
@@ -41,11 +26,27 @@ export const SUBJECT_MENU_CONFIGURATION: Map<string, MenuConfiguration> = new Ma
     ["second", {
         items: [
             {
-                id: "second1",
-                header: "Second 1",
+                id: "test3",
+                header: "Test 3",
                 type: MenuActionType.Default,
-                enabled: false,
-                actionType: "second"
+                enabled: true,
+                subItems: [
+                    {
+                        id: "sub1",
+                        header: "Sub 1",
+                        type: MenuActionType.Default,
+                        enabled: true,
+                        actionType: "subAction1"
+                    },
+                    {
+                        id: "sub2",
+                        header: "Sub 2",
+                        type: MenuActionType.Default,
+                        enabled: true,
+                        actionType: "subAction2"
+                    },
+
+                ]
             },
         ],
         showDefaultActions: false
