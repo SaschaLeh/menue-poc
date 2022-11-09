@@ -11,7 +11,7 @@ export class ContextDirective<T extends Context = any> implements OnInit {
     /**
      * Context Objekt welches auf unteren ebenen zur Referenz und Auflösung genutzt wird.
      */
-    @Input() public innoContext!: T;
+    @Input() public appContext!: T;
 
     /**
      * Feld-Referenz zur generischen Identifizierung des types
@@ -25,11 +25,11 @@ export class ContextDirective<T extends Context = any> implements OnInit {
      * Context type Angabe
      */
     public get type(): unknown {
-        return this.innoContext[this.contextPropertyField];
+        return this.appContext[this.contextPropertyField];
     }
 
     public ngOnInit(): void {
-        if (this.innoContext[this.contextPropertyField] === undefined) {
+        if (this.appContext[this.contextPropertyField] === undefined) {
             console.error("ERROR: No Context!")
         }
     }

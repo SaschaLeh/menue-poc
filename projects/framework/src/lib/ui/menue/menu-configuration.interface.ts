@@ -1,6 +1,6 @@
 import {MenuItem} from "./menu-item.interface";
 
 export interface MenuConfiguration {
-    actions: MenuItem[];
+    items: MenuItem[];
     showDefaultActions: boolean;
 }

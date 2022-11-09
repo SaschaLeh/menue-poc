@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Context} from "@framework/core";
 
 @Component({
-  selector: 'lib-subject-section',
-  templateUrl: './subject-section.component.html',
-  styleUrls: ['./subject-section.component.css']
+    selector: 'lib-subject-section',
+    templateUrl: './subject-section.component.html',
+    styleUrls: ['./subject-section.component.css']
 })
 export class SubjectSectionComponent implements OnInit {
 
-  constructor() { }
+    public second: Context = {type: "second", links: []}
 
-  ngOnInit(): void {
-  }
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
 
 }

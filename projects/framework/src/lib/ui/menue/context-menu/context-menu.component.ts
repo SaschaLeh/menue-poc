@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, ContentChild, OnInit, Optional, Temp
 import {Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {InnoComponent} from "../../util/inno.component";
-import {ContextDirective} from "../../../core/context/context.directive";
-import {MenuItem} from "@framework/ui";
+import {MenuItem, MenuService} from "@framework/ui";
+import {ContextDirective} from "@framework/core";
 
 /**
  * Menu welches via Dependency Injection über die {@link ContextDirective} ein  Context {@link Context  Object bekommt.
@@ -36,16 +36,16 @@ export class ContextMenuComponent extends InnoComponent implements OnInit {
      * Gibt an ob das Menu geöffnet oder geschlossen ist.
      */
     public isOpen = false;
-    private readonly menuItems$$: Subject<ContextMenuItem[]>;
+    private menuItems$$: Subject<MenuItem[]>;
 
     constructor(
-        private readonly contextMenuService: ContextMenuService,
+        private readonly menuConfigurationService: MenuService,
         @Optional() private readonly contextDirective?: ContextDirective,
     ) {
         super();
-        this.menuItems$$ = new Subject<ContextMenuItem[]>();
-        this.nestedMenuItems$ = this.menuItems$$.pipe(map((items) => items.filter((item) => item)));
-        this.singleMenuItems$ = this.menuItems$$.pipe(map((items) => items.filter((item) => item.displayType === 'single')));
+        this.menuItems$$ = new Subject<MenuItem[]>();
+        this.singleMenuItems$ = this.menuItems$$.asObservable();
+        this.nestedMenuItems$ = this.menuItems$$.pipe(map((items) => items.filter((item) => item.subItems !== undefined)));
     }
 
     /**
@@ -82,24 +82,25 @@ export class ContextMenuComponent extends InnoComponent implements OnInit {
      * ggf. anfallende Aktionen aus. Dabei wird der Context der ContextDirective mit an die Aktion übergeben.
      * @param item Informationen über das geklickte Menu Item. Wird genutzt um die Action zu identifizieren.
      */
-    public async onItemClick(event: Event, item: ContextMenuItem): Promise<boolean> {
+    public async onItemClick(event: Event, item: MenuItem): Promise<boolean> {
         event.preventDefault();
         event.stopPropagation();
         event.stopImmediatePropagation();
 
-        const actions = this.contextMenuService.getActions(item.actionType);
-        if (!actions.length) {
-            this.errorService.warn(`No action provided for this menu item: ${item.label} ${item.actionType}`);
+        if (item.actionType) {
+            await this.menuConfigurationService.performActionCurrent(item.actionType, this.contextDirective?.appContext);
+            //await this.menuConfigurationService.performActionFromHandler(item.actionType, this.contextDirective?.appContext)
         }
-
-        await Promise.all(actions.map((action) => action.action(this.contextDirective?.innoContext)));
         return false;
     }
 
     private async load(): Promise<void> {
         if (this.contextDirective !== undefined && this.contextDirective !== null) {
-            const items = await this.contextMenuService.getItems(this.contextDirective.type, this.contextDirective.innoContext);
-            this.menuItems$$.next(items);
+            console.log("LOAD - Context: ", this.contextDirective.appContext);
+            const config = await this.menuConfigurationService.getMenuConfiguration(this.contextDirective.appContext);
+            console.log("Loaded Config - ", config);
+            this.menuItems$$.next(config.items);
         }
     }
+
 }

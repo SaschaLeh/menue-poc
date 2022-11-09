@@ -1,4 +1,6 @@
 :host {
-    color: var(--color-contrast-interactive, unset);
-    display: flex;
+  color: var(--color-contrast-interactive, unset);
+  display: flex;
+  align-items: center;
+  gap: 1rem
 }

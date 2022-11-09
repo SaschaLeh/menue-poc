@@ -6,6 +6,10 @@ const routes: Routes = [
     {
         path: 'subject',
         loadChildren: () => import('../../projects/domain/src/lib/subjekt/subjekt.module').then(m => m.SubjektModule)
+    },
+    {
+        path: 'messstelle',
+        loadChildren: () => import('../../projects/domain/src/lib/messstelle/messstelle.module').then(m => m.MessstelleModule)
     }
 ];
 

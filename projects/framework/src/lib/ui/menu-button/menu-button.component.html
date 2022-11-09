@@ -1,7 +1,8 @@
-<div cdkOverlayOrigin #trigger="cdkOverlayOrigin" class="wrapper">
-    <ng-content select="inno-button inno-icon-button"></ng-content>
+<div #trigger="cdkOverlayOrigin" cdkOverlayOrigin class="wrapper">
+    <ng-content select="[btn]"></ng-content>
 
-    <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger" [cdkConnectedOverlayOpen]="isOpen" (detach)="isOpen = false">
-        <ng-content select="inno-menu-button-menu"></ng-content>
+    <ng-template (detach)="isOpen = false" [cdkConnectedOverlayOpen]="isOpen" [cdkConnectedOverlayOrigin]="trigger"
+                 cdkConnectedOverlay>
+        <ng-content select="[menu]"></ng-content>
     </ng-template>
 </div>

@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Context} from "@framework/core";
 
 @Component({
-  selector: 'lib-subject-detail',
-  templateUrl: './subject-detail.component.html',
-  styleUrls: ['./subject-detail.component.css']
+    selector: 'lib-subject-detail',
+    templateUrl: './subject-detail.component.html',
+    styleUrls: ['./subject-detail.component.css'],
 })
 export class SubjectDetailComponent implements OnInit {
 
-  constructor() { }
+    public menuContext: Context = {type: 'main', links: []}
 
-  ngOnInit(): void {
-  }
+
+    constructor() {
+    }
+
+    ngOnInit(): void {
+    }
 
 }

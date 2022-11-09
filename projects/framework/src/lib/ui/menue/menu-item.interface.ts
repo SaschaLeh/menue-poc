@@ -12,6 +12,7 @@ export interface MenuItem {
     icon?: string;
     enabled: boolean;
     data?: unknown;
-    subActions?: MenuItem[];
+    subItems?: MenuItem[];
     permissions?: string[];
+    actionType?: string;
 }

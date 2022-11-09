@@ -11,6 +11,9 @@
       "@framework/ui": [
         "projects/framework/src/lib/ui/public-api.ts"
       ],
+      "@framework/core": [
+        "projects/framework/src/lib/core/public-api.ts"
+      ],
       "domain": [
         "dist/domain"
       ],

@@ -1,0 +1,8 @@
+<button
+        (blur)="buttonBlur.emit()"
+        (focus)="buttonFocus.emit()"
+        [disabled]="disabled"
+        type="button"
+>
+    <ng-content></ng-content>
+</button>

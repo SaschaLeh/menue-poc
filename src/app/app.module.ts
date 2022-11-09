@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MenuConfigurationToken} from "../../projects/framework/src/lib/ui/menue/menu-configuartion.token";
 import {MENU_CONFIGURATION} from "../../projects/domain/src/lib/menu-configuration.const";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import {MENU_CONFIGURATION} from "../../projects/domain/src/lib/menu-configurati
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpClientModule
     ],
     providers: [{
         provide: MenuConfigurationToken, useValue: MENU_CONFIGURATION

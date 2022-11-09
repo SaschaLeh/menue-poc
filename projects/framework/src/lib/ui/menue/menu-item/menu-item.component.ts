@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener } from '@angular/core';
-import { RippleService } from '../../../indicators/ripple/ripple.service';
+import {ChangeDetectionStrategy, Component, ElementRef, HostListener} from '@angular/core';
 
 @Component({
     selector: 'inno-menu-item',
@@ -8,13 +7,13 @@ import { RippleService } from '../../../indicators/ripple/ripple.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuItemComponent {
+    constructor(private readonly elementRef: ElementRef) {
+    }
+
     /**
      * Erzeugt den Ripple Effekt beim Klick auf das Menu Item
      */
     @HostListener('click', ['$event'])
     public handleClick(mouseEvent: MouseEvent): void {
-        this.rippleService.showEffect(mouseEvent.x, mouseEvent.y, false, this.elementRef.nativeElement);
     }
-
-    constructor(private readonly rippleService: RippleService, private readonly elementRef: ElementRef) {}
 }
